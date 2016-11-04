@@ -35,9 +35,9 @@ import java.io.IOException;
 
 public class MainActivity extends Activity
 {
-
     private static final String TAG = "MainActivity";
 
+    private static final int INVALID_DISPLAY_ID = -1;
     private static final int SCREEN_CAPTURE_PERMISSION_CODE = 1;
     private static final int EXTERNAL_STORAGE_PERMISSION_CODE = 2;
 
@@ -71,6 +71,9 @@ public class MainActivity extends Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Log.i(TAG, "Main activity creation");
+
         setContentView(R.layout.activity_main);
 
         mSurfaceView = (SurfaceView) findViewById(R.id.surfaceView);
@@ -80,10 +83,12 @@ public class MainActivity extends Activity
         WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();
         display.getMetrics(mMetrics);
+
         // Initialize resolution of virtual display in pixels to show
         // the surface view on full screen
         mWidth = mSurfaceView.getLayoutParams().width;
         mHeight = mSurfaceView.getLayoutParams().height;
+        Log.i(TAG, "Surface view size: (" + mWidth + "x" + mHeight + ")");
 
         mDisplayManager = (DisplayManager) getSystemService(Context.DISPLAY_SERVICE);
         mDisplayManager.registerDisplayListener(mDisplayListener, null);
@@ -342,24 +347,24 @@ public class MainActivity extends Activity
     private final DisplayManager.DisplayListener mDisplayListener = new DisplayManager.DisplayListener() {
 
         private boolean mNewDisplayAdded = false;
-        private int mCurrentDisplayId = -1;
+        private int mCurrentDisplayId = INVALID_DISPLAY_ID;
         private DemoPresentation mPresentation;
 
         @Override
-        public void onDisplayAdded(int i) {
-            Log.d(TAG, "onDisplayAdded id=" + i);
-            if (!mNewDisplayAdded && mCurrentDisplayId == -1) {
+        public void onDisplayAdded(int displayId) {
+            Log.d(TAG, "==> onDisplayAdded id=" + displayId);
+            if (!mNewDisplayAdded && mCurrentDisplayId == INVALID_DISPLAY_ID) {
                 mNewDisplayAdded = true;
-                mCurrentDisplayId = i;
+                mCurrentDisplayId = displayId;
             }
         }
 
         @Override
-        public void onDisplayRemoved(int i) {
-            Log.d(TAG, "onDisplayRemoved id=" + i);
-            if (mCurrentDisplayId == i) {
+        public void onDisplayRemoved(int displayId) {
+            Log.d(TAG, "==> onDisplayRemoved id=" + displayId);
+            if (mCurrentDisplayId == displayId) {
                 mNewDisplayAdded = false;
-                mCurrentDisplayId = -1;
+                mCurrentDisplayId = INVALID_DISPLAY_ID;
                 if (mPresentation != null) {
                     mPresentation.dismiss();
                     mPresentation = null;
@@ -368,13 +373,13 @@ public class MainActivity extends Activity
         }
 
         @Override
-        public void onDisplayChanged(int i) {
-            Log.d(TAG, "onDisplayChanged id=" + i);
-            if (mCurrentDisplayId == i) {
+        public void onDisplayChanged(int displayId) {
+            Log.d(TAG, "==> onDisplayChanged id=" + displayId);
+            if (mCurrentDisplayId == displayId) {
                 if (mNewDisplayAdded) {
                     // create a presentation
                     mNewDisplayAdded = false;
-                    Display display = mDisplayManager.getDisplay(i);
+                    Display display = mDisplayManager.getDisplay(displayId);
                     mPresentation = new DemoPresentation(MainActivity.this, display);
                     mPresentation.show();
                 }
