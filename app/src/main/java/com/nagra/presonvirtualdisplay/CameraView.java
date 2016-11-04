@@ -1,4 +1,4 @@
-package com.andronblog.presentationonvirtualdisplay;
+package com.nagra.presonvirtualdisplay;
 
 import android.app.Activity;
 import android.app.Presentation;

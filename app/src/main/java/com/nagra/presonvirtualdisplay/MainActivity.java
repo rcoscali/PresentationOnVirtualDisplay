@@ -27,13 +27,10 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.andronblog.presentationonvirtualdisplay.DemoPresentation;
-import com.andronblog.presentationonvirtualdisplay.R;
-import com.andronblog.presentationonvirtualdisplay.RecorderHelper;
-
 import java.io.IOException;
 
-public class MainActivity extends Activity
+public class MainActivity
+        extends Activity
 {
     private static final String TAG = "MainActivity";
 

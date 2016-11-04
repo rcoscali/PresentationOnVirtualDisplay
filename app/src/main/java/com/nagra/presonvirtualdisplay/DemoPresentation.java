@@ -1,4 +1,4 @@
-package com.andronblog.presentationonvirtualdisplay;
+package com.nagra.presonvirtualdisplay;
 
 import android.app.Activity;
 import android.app.Presentation;
@@ -12,6 +12,8 @@ import android.view.Surface;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
+
+import com.nagra.presonvirtualdisplay.CameraView;
 
 public class DemoPresentation extends Presentation {
 

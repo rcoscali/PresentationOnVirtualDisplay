@@ -1,4 +1,4 @@
-package com.andronblog.presentationonvirtualdisplay;
+package com.nagra.presonvirtualdisplay;
 
 import android.media.MediaCodecInfo;
 import android.media.MediaCodecList;

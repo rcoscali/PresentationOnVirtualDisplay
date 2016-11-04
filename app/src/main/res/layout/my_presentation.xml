@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#0000ff">
 
-    <com.andronblog.presentationonvirtualdisplay.CameraView
+    <com.nagra.presonvirtualdisplay.CameraView
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:id="@+id/cameraView"
