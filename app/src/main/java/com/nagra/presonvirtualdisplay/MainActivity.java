@@ -1,21 +1,17 @@
-package com.andronblog.presentationonvirtualdisplay;
+package com.nagra.presonvirtualdisplay;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.Presentation;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Point;
 import android.hardware.display.DisplayManager;
 import android.hardware.display.VirtualDisplay;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
-import android.media.MediaRouter;
 import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
@@ -24,22 +20,21 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.Size;
 import android.view.Display;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.Surface;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.andronblog.presentationonvirtualdisplay.DemoPresentation;
+import com.andronblog.presentationonvirtualdisplay.R;
+import com.andronblog.presentationonvirtualdisplay.RecorderHelper;
 
 import java.io.IOException;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity
+{
 
     private static final String TAG = "MainActivity";
 
